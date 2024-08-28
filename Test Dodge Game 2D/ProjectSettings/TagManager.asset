@@ -41,3 +41,6 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: TIles
+    uniqueID: 3983925055
+    locked: 0
