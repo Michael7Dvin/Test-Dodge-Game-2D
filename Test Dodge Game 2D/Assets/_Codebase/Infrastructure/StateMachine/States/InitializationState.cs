@@ -21,7 +21,7 @@ namespace _Codebase.Infrastructure.StateMachine.States
             
             Application.targetFrameRate = 60;
             
-            _gameStateMachine.EnterState<SceneLoadingState, SceneID>(SceneID.Room);
+            _gameStateMachine.EnterState<SceneLoadingState, SceneID>(SceneID.Forest);
         }
     }
 }
