@@ -1,36 +1,33 @@
-using System;
 using _Codebase.Common.ObservableProperty;
 using UnityEngine;
 
 namespace _Codebase.Gameplay.Hero
 {
+    [RequireComponent(typeof(Rigidbody2D))]
     public class Mover : MonoBehaviour
     {
-        [SerializeField] private Rigidbody2D _rigidbody;
+        private Rigidbody2D _rigidbody;
         private Transform _transform;
-        
+
         private float _moveSpeed;
         private ObservableProperty<bool> _isMoving = new();
 
         public void Construct(float moveSpeed)
         {
             _moveSpeed = moveSpeed;
+
+            _rigidbody = GetComponent<Rigidbody2D>();
             _transform = transform;
         }
 
-        public bool Enabled { get; set; } = true;
+        public IReadOnlyObservableProperty<bool> IsMoving => _isMoving;
 
         private bool IsFacingRight => 
             _transform.localScale.x > 0;
 
-        public IReadOnlyObservableProperty<bool> IsMoving => _isMoving;
+        public bool Enabled { get; set; } = true;
 
-        private void Update()
-        {
-            Move(Vector2.right);
-        }
-
-        private void Move(Vector2 direction)
+        public void Move(Vector2 direction)
         {
             if (Enabled == false || direction == Vector2.zero)
             {

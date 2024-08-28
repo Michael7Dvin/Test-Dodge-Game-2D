@@ -8,10 +8,16 @@ namespace _Codebase.Infrastructure.Installers
     public class ConfigsInstaller : ScriptableObjectInstaller
     {
         [SerializeField] private ScenesAddresses _scenesAddresses; 
+        [SerializeField] private PrefabAddresses _prefabAddresses;
+        
+        [SerializeField] private HeroConfig _heroConfig; 
 
         public override void InstallBindings()
         {
             Container.Bind<ScenesAddresses>().FromInstance(_scenesAddresses).AsSingle();
+            Container.Bind<PrefabAddresses>().FromInstance(_prefabAddresses).AsSingle();
+        
+            Container.Bind<HeroConfig>().FromInstance(_heroConfig).AsSingle();
         }
     }
 }

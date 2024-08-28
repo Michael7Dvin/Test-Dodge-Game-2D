@@ -1,4 +1,5 @@
 ﻿using _Codebase.Infrastructure.Bootstrappers;
+using _Codebase.Infrastructure.Services.HeroFactory;
 using _Codebase.Infrastructure.StateMachine.States;
 using Zenject;
 
@@ -23,6 +24,7 @@ namespace _Codebase.Infrastructure.Installers
 
         private void BindServices()
         {
+            Container.Bind<IHeroFactory>().To<HeroFactory>().AsSingle();
         }
 
         private void BindBootstrapper()
