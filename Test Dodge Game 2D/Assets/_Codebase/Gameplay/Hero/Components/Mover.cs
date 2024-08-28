@@ -1,7 +1,7 @@
 using _Codebase.Common.ObservableProperty;
 using UnityEngine;
 
-namespace _Codebase.Gameplay.Hero
+namespace _Codebase.Gameplay.Hero.Components
 {
     [RequireComponent(typeof(Rigidbody2D))]
     public class Mover : MonoBehaviour
@@ -25,7 +25,7 @@ namespace _Codebase.Gameplay.Hero
         private bool IsFacingRight => 
             _transform.localScale.x > 0;
 
-        public bool Enabled { get; set; } = true;
+        public bool Enabled { get; set; }
 
         public void Move(Vector2 direction)
         {
@@ -48,9 +48,9 @@ namespace _Codebase.Gameplay.Hero
 
         private void FlipTowardMoveDirection(Vector2 characterPosition, Vector2 newPosition)
         {
-            if (characterPosition.x < newPosition.x && IsFacingRight == true)
+            if (characterPosition.x < newPosition.x && IsFacingRight == false)
                 Flip();
-            else if (characterPosition.x > newPosition.x && IsFacingRight == false)
+            else if (characterPosition.x > newPosition.x && IsFacingRight == true)
                 Flip();
             
             void Flip()

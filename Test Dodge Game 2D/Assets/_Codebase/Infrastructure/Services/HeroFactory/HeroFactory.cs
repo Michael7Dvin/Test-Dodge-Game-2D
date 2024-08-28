@@ -39,6 +39,8 @@ namespace _Codebase.Infrastructure.Services.HeroFactory
             
             hero.Mover.Construct(_heroConfig.MoveSpeed);
 
+            hero.Initialize();
+            
             return hero;
         }
     }

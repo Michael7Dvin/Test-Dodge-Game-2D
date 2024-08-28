@@ -1,4 +1,5 @@
 ﻿using _Codebase.Infrastructure.Services.AddressablesLoader;
+using _Codebase.Infrastructure.Services.InputService;
 using _Codebase.Infrastructure.Services.SceneLoader;
 using _Codebase.Infrastructure.StateMachine;
 using _Codebase.Infrastructure.StateMachine.States;
@@ -25,6 +26,7 @@ namespace _Codebase.Infrastructure.Installers
         {
             Container.Bind<IAddressablesLoader>().To<AddressablesLoader>().AsSingle();
             Container.Bind<ISceneLoader>().To<SceneLoader>().AsSingle();
+            Container.BindInterfacesAndSelfTo<InputService>().AsSingle();
         }
     }
 }

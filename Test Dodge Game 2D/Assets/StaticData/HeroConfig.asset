@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82095e51ec44498289ed297de66467ee, type: 3}
   m_Name: HeroConfig
   m_EditorClassIdentifier: 
-  <SpawnPoint>k__BackingField: {x: 15, y: -6.2, z: 0}
+  <SpawnPoint>k__BackingField: {x: 15, y: -6, z: 0}
   <MoveSpeed>k__BackingField: 5

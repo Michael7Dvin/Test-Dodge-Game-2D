@@ -30,5 +30,11 @@ namespace _Codebase.Common.ObservableProperty
                 Changed?.Invoke(_value);
             }
         }
+
+        public void SetValueAndForceNotify(T value)
+        {
+            _value = value;
+            Changed?.Invoke(_value);
+        }
     }
 }
