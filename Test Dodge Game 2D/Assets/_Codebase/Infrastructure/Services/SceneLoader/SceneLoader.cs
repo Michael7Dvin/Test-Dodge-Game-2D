@@ -1,5 +1,5 @@
 ﻿using _Codebase.Infrastructure.Services.AddressablesLoader;
-using _CodeBase.StaticData;
+using _Codebase.StaticData;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
@@ -20,12 +20,12 @@ namespace _Codebase.Infrastructure.Services.SceneLoader
 
         public Scene CurrentScene { get; private set; }
 
-        public async UniTask Load(SceneID id)
+        public async UniTask LoadAsync(SceneID id)
         {
             switch (id)
             {
                 case SceneID.Forest:
-                    await Load(_scenes.Forest);
+                    await LoadAsync(_scenes.Forest);
                     break;
                 default:
                     Debug.LogError($"Unable to load scene. Unsupported {nameof(SceneID)}: '{id}'");
@@ -33,7 +33,7 @@ namespace _Codebase.Infrastructure.Services.SceneLoader
             }    
         }
 
-        private async UniTask Load(AssetReference sceneReference)
+        private async UniTask LoadAsync(AssetReference sceneReference)
         {
             CurrentScene = await _addressablesLoader.LoadSceneAsync(sceneReference);
             Debug.Log($"Scene loaded: '{CurrentScene.name}'");

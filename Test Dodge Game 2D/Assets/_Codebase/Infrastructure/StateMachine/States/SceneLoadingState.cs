@@ -13,6 +13,6 @@ namespace _Codebase.Infrastructure.StateMachine.States
         }
 
         public async void Enter(SceneID sceneID) => 
-            await _sceneLoader.Load(sceneID);
+            await _sceneLoader.LoadAsync(sceneID);
     }
 }

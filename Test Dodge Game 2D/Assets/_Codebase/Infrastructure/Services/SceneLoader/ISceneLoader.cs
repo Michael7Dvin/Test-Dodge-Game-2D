@@ -6,6 +6,6 @@ namespace _Codebase.Infrastructure.Services.SceneLoader
     public interface ISceneLoader
     {
         Scene CurrentScene { get; }
-        UniTask Load(SceneID id);
+        UniTask LoadAsync(SceneID id);
     }
 }

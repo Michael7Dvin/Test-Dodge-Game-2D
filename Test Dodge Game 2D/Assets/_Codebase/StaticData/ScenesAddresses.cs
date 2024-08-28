@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 
-namespace _CodeBase.StaticData
+namespace _Codebase.StaticData
 {
     [CreateAssetMenu(menuName = "StaticData/Addresses/ScenesAddresses", fileName = "ScenesAddresses")]
     public class ScenesAddresses : ScriptableObject
