@@ -1,11 +1,10 @@
-﻿using _CodeBase.Infrastructure.Services.SceneLoader;
-using _CodeBase.Infrastructure.StateMachine.States.Base;
-using UnityEngine.AddressableAssets;
+﻿using _Codebase.Infrastructure.Services.SceneLoader;
+using _Codebase.Infrastructure.StateMachine.States.Base;
 using Cysharp.Threading.Tasks;
-using DG.Tweening;
+using UnityEngine.AddressableAssets;
 using UnityEngine.Device;
 
-namespace _CodeBase.Infrastructure.StateMachine.States
+namespace _Codebase.Infrastructure.StateMachine.States
 {
     public class InitializationState : IState
     {

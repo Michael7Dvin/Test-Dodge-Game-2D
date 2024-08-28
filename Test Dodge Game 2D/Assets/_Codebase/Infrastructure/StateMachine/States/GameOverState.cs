@@ -1,7 +1,11 @@
-namespace _CodeBase.Infrastructure.StateMachine.States
+using _Codebase.Infrastructure.StateMachine.States.Base;
+
+namespace _Codebase.Infrastructure.StateMachine.States
 {
-    public class GameOverState
+    public class GameOverState : IState
     {
-        
+        public void Enter()
+        {
+        }
     }
 }

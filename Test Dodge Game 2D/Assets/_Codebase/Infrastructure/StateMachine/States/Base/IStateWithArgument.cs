@@ -1,4 +1,4 @@
-﻿namespace _CodeBase.Infrastructure.StateMachine.States.Base
+﻿namespace _Codebase.Infrastructure.StateMachine.States.Base
 {
     public interface IStateWithArgument<in TArgs> : IExitableState
     {

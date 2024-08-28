@@ -1,8 +1,7 @@
-﻿using _CodeBase.Infrastructure.Services.SceneLoader;
-using _CodeBase.Infrastructure.Services.SceneLoader.Service;
-using _CodeBase.Infrastructure.StateMachine.States.Base;
+﻿using _Codebase.Infrastructure.Services.SceneLoader;
+using _Codebase.Infrastructure.StateMachine.States.Base;
 
-namespace _CodeBase.Infrastructure.StateMachine.States
+namespace _Codebase.Infrastructure.StateMachine.States
 {
     public class SceneLoadingState : IStateWithArgument<SceneID>
     {

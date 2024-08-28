@@ -1,8 +1,6 @@
-﻿using _CodeBase.Infrastructure.Services.PlayerFactory;
-using _CodeBase.Infrastructure.StateMachine.States.Base;
-using _CodeBase.StaticData;
+﻿using _Codebase.Infrastructure.StateMachine.States.Base;
 
-namespace _CodeBase.Infrastructure.StateMachine.States
+namespace _Codebase.Infrastructure.StateMachine.States
 {
     public class WorldSpawningState : IState
     {
