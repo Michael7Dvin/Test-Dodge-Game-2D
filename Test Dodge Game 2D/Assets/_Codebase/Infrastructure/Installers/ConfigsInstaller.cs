@@ -13,6 +13,7 @@ namespace _Codebase.Infrastructure.Installers
         [SerializeField] private HeroConfig _heroConfig; 
         [SerializeField] private ProjectileConfig _projectileConfig; 
         [SerializeField] private ProjectileSpawnerConfig _projectileSpawnerConfig; 
+        [SerializeField] private ScoreServiceConfig _scoreServiceConfig; 
 
         public override void InstallBindings()
         {
@@ -22,6 +23,7 @@ namespace _Codebase.Infrastructure.Installers
             Container.Bind<HeroConfig>().FromInstance(_heroConfig).AsSingle();
             Container.Bind<ProjectileConfig>().FromInstance(_projectileConfig).AsSingle();
             Container.Bind<ProjectileSpawnerConfig>().FromInstance(_projectileSpawnerConfig).AsSingle();
+            Container.Bind<ScoreServiceConfig>().FromInstance(_scoreServiceConfig).AsSingle();
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using _Codebase.Gameplay.Services.DeathService;
 using _Codebase.Gameplay.Services.ProjectileSpawner;
+using _Codebase.Gameplay.Services.ScoreService;
 using _Codebase.Infrastructure.Bootstrappers;
 using _Codebase.Infrastructure.Factories.CameraFactory;
 using _Codebase.Infrastructure.Factories.HeroFactory;
@@ -47,8 +48,9 @@ namespace _Codebase.Infrastructure.Installers
         private void BindServices()
         {
             Container.Bind<IDeathService>().To<DeathService>().AsSingle();
-            Container.Bind<IProjectileSpawner>().To<ProjectileSpawner>().AsSingle();
+            Container.BindInterfacesAndSelfTo<ProjectileSpawner>().AsSingle();
             Container.Bind<IProjectilePool>().To<ProjectilePool>().AsSingle();
+            Container.BindInterfacesAndSelfTo<ScoreService>().AsSingle();
         }
 
         private void BindBootstrapper()
