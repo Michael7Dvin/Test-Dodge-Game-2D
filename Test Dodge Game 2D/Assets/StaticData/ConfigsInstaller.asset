@@ -17,3 +17,4 @@ MonoBehaviour:
   _heroConfig: {fileID: 11400000, guid: 0dc0eb5ff79dd6b42a0564fb011a5bea, type: 2}
   _projectileConfig: {fileID: 11400000, guid: 2a573abf466259042a8ae2a3f1486617, type: 2}
   _projectileSpawnerConfig: {fileID: 11400000, guid: 575515ce146e7fe40a5431d39326c793, type: 2}
+  _scoreServiceConfig: {fileID: 11400000, guid: 230ca77e65a3bdd4cbc65b1a2c262e2b, type: 2}

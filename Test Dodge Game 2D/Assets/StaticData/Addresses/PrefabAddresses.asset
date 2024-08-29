@@ -27,3 +27,23 @@ MonoBehaviour:
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
+  <Canvas>k__BackingField:
+    m_AssetGUID: cc37101eb1f5a9f46b8c66f59595c6e8
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  <EventSystem>k__BackingField:
+    m_AssetGUID: a4c0ec8cacc2f7d4499d9f7b8496958a
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  <ScoreCounter>k__BackingField:
+    m_AssetGUID: f07fc60870b0b1449a80b67674ebd34f
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  <GameOverWindowViewPrefab>k__BackingField:
+    m_AssetGUID: e8456ad3a58dca74bba282096c00bf8d
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
