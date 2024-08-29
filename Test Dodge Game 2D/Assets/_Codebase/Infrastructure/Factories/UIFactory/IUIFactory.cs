@@ -1,4 +1,5 @@
-﻿using Cysharp.Threading.Tasks;
+﻿using _Codebase.UI.Score;
+using Cysharp.Threading.Tasks;
 
 namespace _Codebase.Infrastructure.Factories.UIFactory
 {
@@ -7,5 +8,6 @@ namespace _Codebase.Infrastructure.Factories.UIFactory
         UniTask WarmUpAsync();
         void CreateCanvas();
         void CreateEventSystem();
+        void CreateScoreCounter();
     }
 }

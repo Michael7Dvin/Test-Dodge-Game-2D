@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 957f9657312a4fc59ad32d111b9cbd59, type: 3}
   m_Name: ScoreServiceConfig
   m_EditorClassIdentifier: 
-  <ScoreAccrualIntervalInSeconds>k__BackingField: 0
-  <ScorePerSecond>k__BackingField: 0
+  <ScoreAccrualIntervalInSeconds>k__BackingField: 1
+  <ScorePerSecond>k__BackingField: 1

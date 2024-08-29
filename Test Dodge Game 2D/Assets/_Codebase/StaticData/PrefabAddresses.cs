@@ -12,5 +12,6 @@ namespace _Codebase.StaticData
         
         [field: SerializeField] public AssetReferenceGameObject Canvas { get; private set; }
         [field: SerializeField] public AssetReferenceGameObject EventSystem { get; private set; }
+        [field: SerializeField] public AssetReferenceGameObject ScoreCounter { get; private set; }
     }
 }

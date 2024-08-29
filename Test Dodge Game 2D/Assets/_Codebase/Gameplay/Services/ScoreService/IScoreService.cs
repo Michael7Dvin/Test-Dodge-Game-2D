@@ -1,8 +1,10 @@
+using UniRx;
+
 namespace _Codebase.Gameplay.Services.ScoreService
 {
     public interface IScoreService
     {
-        int CurrentScore { get; }
+        IReadOnlyReactiveProperty<int> CurrentScore { get; }
         
         void Enable();
         void Disable();

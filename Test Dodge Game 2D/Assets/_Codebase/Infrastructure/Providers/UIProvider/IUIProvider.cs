@@ -1,3 +1,4 @@
+using _Codebase.UI.Score;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -5,10 +6,9 @@ namespace _Codebase.Infrastructure.Providers.UIProvider
 {
     public interface IUIProvider
     {
-        Canvas Canvas { get; }
-        EventSystem EventSystem { get; }
+        Canvas Canvas { get; set; }
+        EventSystem EventSystem { get; set;}
         
-        void SetCanvas(Canvas canvas);
-        void SetEventSystem(EventSystem eventSystem);
+        ScoreCounter ScoreCounter { get; set;}
     }
 }

@@ -9,13 +9,15 @@ namespace _Codebase.Gameplay.Services.ScoreService
     {
         private readonly ScoreServiceConfig _config;
         private CompositeDisposable _compositeDisposable = new();
+        
+        private readonly ReactiveProperty<int> _currentScore = new();
 
         public ScoreService(ScoreServiceConfig config)
         {
             _config = config;
         }
 
-        public int CurrentScore { get; private set; }
+        public IReadOnlyReactiveProperty<int> CurrentScore => _currentScore;
 
         public void Enable()
         {
@@ -28,15 +30,12 @@ namespace _Codebase.Gameplay.Services.ScoreService
             _compositeDisposable.Clear();
 
         public void Reset() => 
-            CurrentScore = 0;
+            _currentScore.Value = 0;
 
         public void Dispose() => 
             _compositeDisposable?.Dispose();
 
-        private void AccrueScore()
-        {
-            CurrentScore += _config.ScorePerSecond;
-            Debug.Log(CurrentScore);
-        }
+        private void AccrueScore() => 
+            _currentScore.Value += _config.ScorePerSecond;
     }
 }

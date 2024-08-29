@@ -43,6 +43,7 @@ namespace _Codebase.Infrastructure.StateMachine.States
             
             _uiFactory.CreateCanvas();
             _uiFactory.CreateEventSystem();
+            _uiFactory.CreateScoreCounter();
             
             _gameStateMachine.EnterState<GameplayState>();
         }
