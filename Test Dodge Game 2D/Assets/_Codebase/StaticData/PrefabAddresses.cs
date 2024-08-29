@@ -7,5 +7,6 @@ namespace _Codebase.StaticData
     public class PrefabAddresses : ScriptableObject
     {
         [field: SerializeField] public AssetReferenceGameObject Hero { get; private set; }
+        [field: SerializeField] public AssetReferenceGameObject Projectile { get; private set; }
     }
 }

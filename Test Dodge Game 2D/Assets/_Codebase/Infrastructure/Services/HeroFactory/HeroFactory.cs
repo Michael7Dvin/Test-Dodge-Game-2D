@@ -1,7 +1,7 @@
 using _Codebase.Gameplay.Heroes;
 using _Codebase.Gameplay.Heroes.Components;
-using _Codebase.Gameplay.Services.HeroProvider;
 using _Codebase.Infrastructure.Services.AddressablesLoader;
+using _Codebase.Infrastructure.Services.HeroProvider;
 using _Codebase.StaticData;
 using Cysharp.Threading.Tasks;
 using UnityEngine;

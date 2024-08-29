@@ -1,7 +1,7 @@
 ﻿using _Codebase.Gameplay.Services.DeathService;
-using _Codebase.Gameplay.Services.HeroProvider;
 using _Codebase.Infrastructure.Bootstrappers;
 using _Codebase.Infrastructure.Services.HeroFactory;
+using _Codebase.Infrastructure.Services.HeroProvider;
 using _Codebase.Infrastructure.StateMachine.States;
 using Zenject;
 
