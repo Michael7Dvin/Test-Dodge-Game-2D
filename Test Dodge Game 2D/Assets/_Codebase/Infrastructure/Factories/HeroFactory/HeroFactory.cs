@@ -1,13 +1,13 @@
 using _Codebase.Gameplay.Heroes;
 using _Codebase.Gameplay.Heroes.Components;
+using _Codebase.Infrastructure.Providers.HeroProvider;
 using _Codebase.Infrastructure.Services.AddressablesLoader;
-using _Codebase.Infrastructure.Services.HeroProvider;
 using _Codebase.StaticData;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 using Zenject;
 
-namespace _Codebase.Infrastructure.Services.HeroFactory
+namespace _Codebase.Infrastructure.Factories.HeroFactory
 {
     public class HeroFactory : IHeroFactory
     {

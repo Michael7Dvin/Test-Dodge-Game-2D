@@ -1,6 +1,6 @@
 using System;
 using _Codebase.Gameplay.Heroes;
-using _Codebase.Infrastructure.Services.HeroProvider;
+using _Codebase.Infrastructure.Providers.HeroProvider;
 using _Codebase.Infrastructure.StateMachine;
 using _Codebase.Infrastructure.StateMachine.States;
 

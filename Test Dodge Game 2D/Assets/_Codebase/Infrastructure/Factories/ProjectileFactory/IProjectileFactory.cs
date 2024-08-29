@@ -2,7 +2,7 @@ using _Codebase.Gameplay.Projectiles;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 
-namespace _Codebase.Infrastructure.Services.ProjectileFactory
+namespace _Codebase.Infrastructure.Factories.ProjectileFactory
 {
     public interface IProjectileFactory
     {

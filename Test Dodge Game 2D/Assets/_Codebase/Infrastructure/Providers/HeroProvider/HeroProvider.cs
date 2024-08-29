@@ -1,6 +1,6 @@
 using _Codebase.Gameplay.Heroes;
 
-namespace _Codebase.Infrastructure.Services.HeroProvider
+namespace _Codebase.Infrastructure.Providers.HeroProvider
 {
     public class HeroProvider : IHeroProvider
     {

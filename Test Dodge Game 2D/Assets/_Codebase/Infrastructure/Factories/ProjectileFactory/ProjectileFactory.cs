@@ -5,7 +5,7 @@ using Cysharp.Threading.Tasks;
 using UnityEngine;
 using Zenject;
 
-namespace _Codebase.Infrastructure.Services.ProjectileFactory
+namespace _Codebase.Infrastructure.Factories.ProjectileFactory
 {
     public class ProjectileFactory : IProjectileFactory
     {
@@ -13,6 +13,17 @@ namespace _Codebase.Infrastructure.Services.ProjectileFactory
         private readonly PrefabAddresses _prefabAddresses;
         private readonly IInstantiator _instantiator;
         private readonly ProjectileConfig _projectileConfig;
+
+        public ProjectileFactory(IAddressablesLoader addressablesLoader,
+            PrefabAddresses prefabAddresses,
+            IInstantiator instantiator,
+            ProjectileConfig projectileConfig)
+        {
+            _addressablesLoader = addressablesLoader;
+            _prefabAddresses = prefabAddresses;
+            _instantiator = instantiator;
+            _projectileConfig = projectileConfig;
+        }
 
         public async UniTask WarmUpAsync() => 
             await _addressablesLoader.LoadGameObjectAsync(_prefabAddresses.Projectile);
