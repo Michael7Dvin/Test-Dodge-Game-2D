@@ -6,6 +6,7 @@ using _Codebase.Infrastructure.Factories.HeroFactory;
 using _Codebase.Infrastructure.Factories.ProjectileFactory;
 using _Codebase.Infrastructure.Providers.CameraProvider;
 using _Codebase.Infrastructure.Providers.HeroProvider;
+using _Codebase.Infrastructure.Services.ProjectilePool;
 using _Codebase.Infrastructure.StateMachine.States;
 using Zenject;
 
@@ -47,6 +48,7 @@ namespace _Codebase.Infrastructure.Installers
         {
             Container.Bind<IDeathService>().To<DeathService>().AsSingle();
             Container.Bind<IProjectileSpawner>().To<ProjectileSpawner>().AsSingle();
+            Container.Bind<IProjectilePool>().To<ProjectilePool>().AsSingle();
         }
 
         private void BindBootstrapper()

@@ -1,7 +1,7 @@
 using System;
 using _Codebase.Gameplay.Projectiles;
-using _Codebase.Infrastructure.Factories.ProjectileFactory;
 using _Codebase.Infrastructure.Providers.CameraProvider;
+using _Codebase.Infrastructure.Services.ProjectilePool;
 using _Codebase.StaticData;
 using UniRx;
 using UnityEngine;
@@ -11,17 +11,17 @@ namespace _Codebase.Gameplay.Services.ProjectileSpawner
 {
     public class ProjectileSpawner : IProjectileSpawner, IDisposable
     {
-        private readonly IProjectileFactory _projectileFactory;
+        private readonly IProjectilePool _projectilePool;
         private readonly ICameraProvider _cameraProvider; 
         private readonly ProjectileSpawnerConfig _config;
         
         private readonly CompositeDisposable _compositeDisposable = new();
 
-        public ProjectileSpawner(IProjectileFactory projectileFactory,
+        public ProjectileSpawner(IProjectilePool projectilePool,
             ICameraProvider cameraProvider,
             ProjectileSpawnerConfig config)
         {
-            _projectileFactory = projectileFactory;
+            _projectilePool = projectilePool;
             _cameraProvider = cameraProvider;
             _config = config;
         }
@@ -39,7 +39,8 @@ namespace _Codebase.Gameplay.Services.ProjectileSpawner
         private void Spawn()
         {
             Vector2 spawnPosition = GetRandomPointOutsideScreen();
-            Projectile projectile = _projectileFactory.Create(spawnPosition);
+            Projectile projectile = _projectilePool.Get(spawnPosition);
+            projectile.Hit += OnProjectileHit;
         }
 
         private Vector2 GetRandomPointOutsideScreen()
@@ -57,6 +58,13 @@ namespace _Codebase.Gameplay.Services.ProjectileSpawner
             
             return new Vector2(x, y);
         }
+
+        private void OnProjectileHit(Projectile projectile)
+        {
+            _projectilePool.Return(projectile);
+            projectile.Hit -= OnProjectileHit;
+        }
+
 
         public void Dispose()
         {

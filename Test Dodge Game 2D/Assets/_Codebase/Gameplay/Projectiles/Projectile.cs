@@ -15,7 +15,7 @@ namespace _Codebase.Gameplay.Projectiles
             _moveSpeed = moveSpeed;
         }
         
-        public Action Hit { get; set; }
+        public Action<Projectile> Hit { get; set; }
 
         private void Awake() => 
             _rigidbody = GetComponent<Rigidbody2D>();
@@ -28,7 +28,7 @@ namespace _Codebase.Gameplay.Projectiles
             if (other.TryGetComponent(out Health health)) 
                 health.Damage();
             
-            Hit?.Invoke();
+            Hit?.Invoke(this);
         }
 
         private void Move()
