@@ -3,6 +3,8 @@ using _Codebase.Gameplay.Heroes;
 using _Codebase.Infrastructure.Providers.HeroProvider;
 using _Codebase.Infrastructure.StateMachine;
 using _Codebase.Infrastructure.StateMachine.States;
+using UniRx;
+using UnityEngine;
 
 namespace _Codebase.Gameplay.Services.DeathService
 {
@@ -11,6 +13,8 @@ namespace _Codebase.Gameplay.Services.DeathService
         private readonly IGameStateMachine _gameStateMachine;
         private readonly IHeroProvider _heroProvider;
 
+        private readonly CompositeDisposable _compositeDisposable = new();
+        
         private Hero _hero;
 
         public DeathService(IGameStateMachine gameStateMachine, IHeroProvider heroProvider)
@@ -22,16 +26,13 @@ namespace _Codebase.Gameplay.Services.DeathService
         public void Initialize()
         {
             _hero = _heroProvider.Hero;
-            _hero.Health.Died += EnterGameOverState;
+            _hero.Health.IsDead
+                .Where(isDead => isDead == true)
+                .Subscribe(_ => _gameStateMachine.EnterState<GameOverState>())
+                .AddTo(_compositeDisposable);
         }
 
-        private void EnterGameOverState()
-        {
-            _hero.Health.Died -= EnterGameOverState;
-            _gameStateMachine.EnterState<GameOverState>();
-        }
-
-        public void Dispose() => 
-            _hero.Health.Died -= EnterGameOverState;
+        public void Dispose() =>
+            _compositeDisposable.Dispose();
     }
 }

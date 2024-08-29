@@ -1,4 +1,3 @@
-using System;
 using _Codebase.Gameplay.Services.ScoreService;
 using _Codebase.Infrastructure.StateMachine;
 using _Codebase.Infrastructure.StateMachine.States;

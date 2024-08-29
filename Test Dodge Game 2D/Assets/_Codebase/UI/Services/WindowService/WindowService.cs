@@ -18,12 +18,9 @@ namespace _Codebase.UI.Services.WindowService
 
         public void ShowWindow(WindowID windowID)
         {
-            if (_windows.ContainsKey(windowID) == false)
-            {
+            if (_windows.ContainsKey(windowID) == false) 
                 CreateWindow(windowID);
-                return;
-            }
-            
+
             _windows[windowID].Show();
         }
 
