@@ -3,20 +3,19 @@ using UnityEngine;
 
 namespace _Codebase.Gameplay.Hero.Components
 {
-    [RequireComponent(typeof(Rigidbody2D))]
-    public class Mover : MonoBehaviour
+    public class Mover
     {
-        private Rigidbody2D _rigidbody;
-        private Transform _transform;
+        private readonly Rigidbody2D _rigidbody;
+        private readonly Transform _transform;
+        private readonly float _moveSpeed;
 
-        private float _moveSpeed;
         private ObservableProperty<bool> _isMoving = new();
 
-        public void Construct(float moveSpeed)
+        public Mover(float moveSpeed, Transform transform, Rigidbody2D rigidbody2D)
         {
             _moveSpeed = moveSpeed;
 
-            _rigidbody = GetComponent<Rigidbody2D>();
+            _rigidbody = rigidbody2D;
             _transform = transform;
         }
 

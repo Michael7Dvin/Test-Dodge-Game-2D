@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: HeroConfig
   m_EditorClassIdentifier: 
   <SpawnPoint>k__BackingField: {x: 15, y: -6, z: 0}
-  <MoveSpeed>k__BackingField: 5
+  <MoveSpeed>k__BackingField: 15

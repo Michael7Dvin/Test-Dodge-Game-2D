@@ -1,4 +1,5 @@
 using _Codebase.Gameplay.Hero;
+using _Codebase.Gameplay.Hero.Components;
 using _Codebase.Infrastructure.Services.AddressablesLoader;
 using _Codebase.StaticData;
 using Cysharp.Threading.Tasks;
@@ -36,9 +37,11 @@ namespace _Codebase.Infrastructure.Services.HeroFactory
                 _heroConfig.SpawnPoint,
                 Quaternion.identity,
                 null);
-            
-            hero.Mover.Construct(_heroConfig.MoveSpeed);
 
+            Mover mover = new Mover(_heroConfig.MoveSpeed, hero.Transform, hero.Rigidbody2D);
+            HeroAnimator heroAnimator = new(hero.Animator);
+            
+            hero.Construct(mover, heroAnimator);
             hero.Initialize();
             
             return hero;

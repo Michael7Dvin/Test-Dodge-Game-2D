@@ -5,7 +5,7 @@ using Zenject;
 
 namespace _Codebase.Gameplay.Hero
 {
-    [RequireComponent(typeof(Mover))]
+    [RequireComponent(typeof(Rigidbody2D), typeof(Animator))]
     public class Hero : MonoBehaviour
     {
         private IInputService _inputService;
@@ -15,18 +15,37 @@ namespace _Codebase.Gameplay.Hero
         {
             _inputService = inputService;
         }
+
+        public void Construct(Mover mover, HeroAnimator heroAnimator)
+        {
+            Mover = mover;
+            HeroAnimator = heroAnimator;
+        }
+
+        public Transform Transform { get; private set; }
+        public Rigidbody2D Rigidbody2D { get; private set; }
+        public Animator Animator { get; private set; }
         
         public Mover Mover { get; private set; }
-
+        public HeroAnimator HeroAnimator { get; private set; }
+        
         private void Awake()
         {
-            Mover = GetComponent<Mover>();
+            Transform = GetComponent<Transform>();
+            Rigidbody2D = GetComponent<Rigidbody2D>();
+            Animator = GetComponent<Animator>();
+        }
+
+        private void OnDestroy()
+        {
+            _inputService.HorizontalMoveInput.Changed -= OnHorizontalInput;
+            Mover.IsMoving.Changed -= OnIsMovingChanged;
         }
 
         public void Initialize()
         {
             _inputService.HorizontalMoveInput.Changed += OnHorizontalInput;
-
+            Mover.IsMoving.Changed += OnIsMovingChanged;
             Mover.Enabled = true;
         }
 
@@ -36,9 +55,7 @@ namespace _Codebase.Gameplay.Hero
             Mover.Move(moveDirection);
         }
 
-        private void OnDestroy()
-        {
-            _inputService.HorizontalMoveInput.Changed -= OnHorizontalInput;
-        }
+        private void OnIsMovingChanged(bool isMoving) => 
+            HeroAnimator.ChangeIsMovingState(isMoving);
     }
 }
