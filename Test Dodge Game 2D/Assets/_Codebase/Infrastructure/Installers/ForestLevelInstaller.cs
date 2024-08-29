@@ -5,8 +5,10 @@ using _Codebase.Infrastructure.Bootstrappers;
 using _Codebase.Infrastructure.Factories.CameraFactory;
 using _Codebase.Infrastructure.Factories.HeroFactory;
 using _Codebase.Infrastructure.Factories.ProjectileFactory;
+using _Codebase.Infrastructure.Factories.UIFactory;
 using _Codebase.Infrastructure.Providers.CameraProvider;
 using _Codebase.Infrastructure.Providers.HeroProvider;
+using _Codebase.Infrastructure.Providers.UIProvider;
 using _Codebase.Infrastructure.Services.ProjectilePool;
 using _Codebase.Infrastructure.StateMachine.States;
 using Zenject;
@@ -37,12 +39,14 @@ namespace _Codebase.Infrastructure.Installers
             Container.Bind<IHeroFactory>().To<HeroFactory>().AsSingle();
             Container.Bind<ICameraFactory>().To<CameraFactory>().AsSingle();
             Container.Bind<IProjectileFactory>().To<ProjectileFactory>().AsSingle();
+            Container.Bind<IUIFactory>().To<UIFactory>().AsSingle();
         }
 
         private void BindProviders()
         {
             Container.Bind<IHeroProvider>().To<HeroProvider>().AsSingle();
             Container.Bind<ICameraProvider>().To<CameraProvider>().AsSingle();
+            Container.Bind<IUIProvider>().To<UIProvider>().AsSingle();
         }
 
         private void BindServices()

@@ -9,5 +9,8 @@ namespace _Codebase.StaticData
         [field: SerializeField] public AssetReferenceGameObject Hero { get; private set; }
         [field: SerializeField] public AssetReferenceGameObject Projectile { get; private set; }
         [field: SerializeField] public AssetReferenceGameObject Camera { get; private set; }
+        
+        [field: SerializeField] public AssetReferenceGameObject Canvas { get; private set; }
+        [field: SerializeField] public AssetReferenceGameObject EventSystem { get; private set; }
     }
 }

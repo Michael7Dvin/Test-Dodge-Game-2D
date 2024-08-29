@@ -27,3 +27,13 @@ MonoBehaviour:
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
+  <Canvas>k__BackingField:
+    m_AssetGUID: cc37101eb1f5a9f46b8c66f59595c6e8
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  <EventSystem>k__BackingField:
+    m_AssetGUID: a4c0ec8cacc2f7d4499d9f7b8496958a
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
