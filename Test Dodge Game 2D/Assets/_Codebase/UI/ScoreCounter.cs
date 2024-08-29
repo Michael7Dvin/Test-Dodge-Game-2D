@@ -1,10 +1,10 @@
 ﻿using _Codebase.Gameplay.Services.ScoreService;
 using TMPro;
-using UnityEngine;
 using UniRx;
+using UnityEngine;
 using Zenject;
 
-namespace _Codebase.UI.Score
+namespace _Codebase.UI
 {
     public class ScoreCounter : MonoBehaviour
     {

@@ -1,7 +1,7 @@
 ﻿using _Codebase.Infrastructure.Providers.UIProvider;
 using _Codebase.Infrastructure.Services.AddressablesLoader;
 using _Codebase.StaticData;
-using _Codebase.UI.Score;
+using _Codebase.UI;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -67,7 +67,7 @@ namespace _Codebase.Infrastructure.Factories.UIFactory
             ScoreCounter scoreCounter = _instantiator.InstantiatePrefabForComponent<ScoreCounter>(_scoreCounterPrefab, CanvasTransform);
             _uiProvider.ScoreCounter = scoreCounter;
         }
-
+        
         private async UniTaskVoid ValidateWarmUpping()
         {
             if (_canvasPrefab == null || _eventSystemPrefab == null || _scoreCounterPrefab == null)

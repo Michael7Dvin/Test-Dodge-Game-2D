@@ -1,5 +1,4 @@
-﻿using _Codebase.UI.Score;
-using Cysharp.Threading.Tasks;
+﻿using Cysharp.Threading.Tasks;
 
 namespace _Codebase.Infrastructure.Factories.UIFactory
 {

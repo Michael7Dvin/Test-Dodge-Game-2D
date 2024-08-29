@@ -1,4 +1,4 @@
-using _Codebase.UI.Score;
+using _Codebase.UI;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
