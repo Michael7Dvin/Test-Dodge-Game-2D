@@ -1,11 +1,11 @@
-using _Codebase.Gameplay.Hero.Components;
+using _Codebase.Gameplay.Heroes.Components;
 using _Codebase.Infrastructure.Services.InputService;
 using UnityEngine;
 using Zenject;
 
-namespace _Codebase.Gameplay.Hero
+namespace _Codebase.Gameplay.Heroes
 {
-    [RequireComponent(typeof(Rigidbody2D), typeof(Animator))]
+    [RequireComponent(typeof(Rigidbody2D), typeof(Animator), typeof(Health))]
     public class Hero : MonoBehaviour
     {
         private IInputService _inputService;
@@ -29,11 +29,15 @@ namespace _Codebase.Gameplay.Hero
         public Mover Mover { get; private set; }
         public HeroAnimator HeroAnimator { get; private set; }
         
+        public Health Health { get; private set; }
+        
         private void Awake()
         {
             Transform = GetComponent<Transform>();
             Rigidbody2D = GetComponent<Rigidbody2D>();
             Animator = GetComponent<Animator>();
+            
+            Health = GetComponent<Health>();
         }
 
         private void OnDestroy()

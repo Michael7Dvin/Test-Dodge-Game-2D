@@ -1,7 +1,7 @@
 using _Codebase.Common.ObservableProperty;
 using UnityEngine;
 
-namespace _Codebase.Gameplay.Hero.Components
+namespace _Codebase.Gameplay.Heroes.Components
 {
     public class Mover
     {
@@ -9,7 +9,7 @@ namespace _Codebase.Gameplay.Hero.Components
         private readonly Transform _transform;
         private readonly float _moveSpeed;
 
-        private ObservableProperty<bool> _isMoving = new();
+        private readonly ObservableProperty<bool> _isMoving = new();
 
         public Mover(float moveSpeed, Transform transform, Rigidbody2D rigidbody2D)
         {

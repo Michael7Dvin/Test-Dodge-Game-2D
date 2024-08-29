@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace _Codebase.Gameplay.Hero.Components
+namespace _Codebase.Gameplay.Heroes.Components
 {
     public class HeroAnimator
     {

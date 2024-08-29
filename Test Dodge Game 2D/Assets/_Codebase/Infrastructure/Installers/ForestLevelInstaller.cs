@@ -1,4 +1,6 @@
-﻿using _Codebase.Infrastructure.Bootstrappers;
+﻿using _Codebase.Gameplay.Services.DeathService;
+using _Codebase.Gameplay.Services.HeroProvider;
+using _Codebase.Infrastructure.Bootstrappers;
 using _Codebase.Infrastructure.Services.HeroFactory;
 using _Codebase.Infrastructure.StateMachine.States;
 using Zenject;
@@ -25,6 +27,8 @@ namespace _Codebase.Infrastructure.Installers
         private void BindServices()
         {
             Container.Bind<IHeroFactory>().To<HeroFactory>().AsSingle();
+            Container.Bind<IHeroProvider>().To<HeroProvider>().AsSingle();
+            Container.Bind<IDeathService>().To<DeathService>().AsSingle();
         }
 
         private void BindBootstrapper()

@@ -1,5 +1,6 @@
-using _Codebase.Gameplay.Hero;
-using _Codebase.Gameplay.Hero.Components;
+using _Codebase.Gameplay.Heroes;
+using _Codebase.Gameplay.Heroes.Components;
+using _Codebase.Gameplay.Services.HeroProvider;
 using _Codebase.Infrastructure.Services.AddressablesLoader;
 using _Codebase.StaticData;
 using Cysharp.Threading.Tasks;
@@ -14,16 +15,19 @@ namespace _Codebase.Infrastructure.Services.HeroFactory
         private readonly PrefabAddresses _prefabAddresses;
         private readonly IInstantiator _instantiator;
         private readonly HeroConfig _heroConfig;
+        private readonly IHeroProvider _heroProvider;
 
         public HeroFactory(IAddressablesLoader addressablesLoader,
             PrefabAddresses prefabAddresses,
             IInstantiator instantiator,
-            HeroConfig heroConfig)
+            HeroConfig heroConfig,
+            IHeroProvider heroProvider)
         {
             _addressablesLoader = addressablesLoader;
             _prefabAddresses = prefabAddresses;
             _instantiator = instantiator;
             _heroConfig = heroConfig;
+            _heroProvider = heroProvider;
         }
 
         public async UniTask WarmUpAsync() => 
@@ -43,7 +47,8 @@ namespace _Codebase.Infrastructure.Services.HeroFactory
             
             hero.Construct(mover, heroAnimator);
             hero.Initialize();
-            
+    
+            _heroProvider.SetHero(hero);
             return hero;
         }
     }

@@ -14,11 +14,11 @@ namespace _Codebase.Infrastructure.StateMachine.States
             _heroFactory = heroFactory;
         }
 
-        public void Enter()
+        public async void Enter()
         {
             _heroFactory.WarmUpAsync();
 
-            _heroFactory.CreateAsync();
+            await _heroFactory.CreateAsync();
             
             _gameStateMachine.EnterState<GameplayState>();
         }
