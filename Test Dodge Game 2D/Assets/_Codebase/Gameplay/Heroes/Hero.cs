@@ -1,5 +1,7 @@
+using System;
 using _Codebase.Gameplay.Heroes.Components;
 using _Codebase.Infrastructure.Services.InputService;
+using UniRx;
 using UnityEngine;
 using Zenject;
 
@@ -40,26 +42,19 @@ namespace _Codebase.Gameplay.Heroes
             Health = GetComponent<Health>();
         }
 
-        private void OnDestroy()
+        private void FixedUpdate()
         {
-            _inputService.HorizontalMoveInput.Changed -= OnHorizontalInput;
-            Mover.IsMoving.Changed -= OnIsMovingChanged;
+            Mover.Move(_inputService.MoveDirection);
         }
 
         public void Initialize()
         {
-            _inputService.HorizontalMoveInput.Changed += OnHorizontalInput;
-            Mover.IsMoving.Changed += OnIsMovingChanged;
+            Mover.IsMoving
+                .Subscribe(isMoving => HeroAnimator.ChangeIsMovingState(isMoving))
+                .AddTo(this);
+            
             Mover.Enabled = true;
         }
 
-        private void OnHorizontalInput(float horizontalMoveInput)
-        {
-            Vector2 moveDirection = new Vector2(horizontalMoveInput, 0);
-            Mover.Move(moveDirection);
-        }
-
-        private void OnIsMovingChanged(bool isMoving) => 
-            HeroAnimator.ChangeIsMovingState(isMoving);
     }
 }

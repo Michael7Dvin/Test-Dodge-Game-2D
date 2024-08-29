@@ -1,4 +1,4 @@
-using _Codebase.Common.ObservableProperty;
+using UniRx;
 using UnityEngine;
 
 namespace _Codebase.Gameplay.Heroes.Components
@@ -9,7 +9,7 @@ namespace _Codebase.Gameplay.Heroes.Components
         private readonly Transform _transform;
         private readonly float _moveSpeed;
 
-        private readonly ObservableProperty<bool> _isMoving = new();
+        private readonly ReactiveProperty<bool> _isMoving = new();
 
         public Mover(float moveSpeed, Transform transform, Rigidbody2D rigidbody2D)
         {
@@ -19,16 +19,16 @@ namespace _Codebase.Gameplay.Heroes.Components
             _transform = transform;
         }
 
-        public IReadOnlyObservableProperty<bool> IsMoving => _isMoving;
+        public IReadOnlyReactiveProperty<bool> IsMoving => _isMoving;
 
         private bool IsFacingRight => 
             _transform.localScale.x > 0;
 
         public bool Enabled { get; set; }
 
-        public void Move(Vector2 direction)
+        public void Move(float horizontalDirection)
         {
-            if (Enabled == false || direction == Vector2.zero)
+            if (Enabled == false || horizontalDirection == 0)
             {
                 _isMoving.Value = false;
                 return;
@@ -36,7 +36,7 @@ namespace _Codebase.Gameplay.Heroes.Components
             
             _isMoving.Value = true;
 
-            
+            Vector2 direction = new Vector2(horizontalDirection, 0);
             Vector2 characterPosition = _rigidbody.position;
             Vector2 newPosition = characterPosition + direction * (_moveSpeed * Time.deltaTime);
             

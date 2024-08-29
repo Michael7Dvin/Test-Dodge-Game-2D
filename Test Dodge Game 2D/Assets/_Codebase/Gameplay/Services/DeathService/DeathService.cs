@@ -1,6 +1,6 @@
 using System;
 using _Codebase.Gameplay.Heroes;
-using _Codebase.Gameplay.Services.HeroProvider;
+using _Codebase.Infrastructure.Providers.HeroProvider;
 using _Codebase.Infrastructure.StateMachine;
 using _Codebase.Infrastructure.StateMachine.States;
 
@@ -19,7 +19,7 @@ namespace _Codebase.Gameplay.Services.DeathService
             _heroProvider = heroProvider;
         }
 
-        public void Enable()
+        public void Initialize()
         {
             _hero = _heroProvider.Hero;
             _hero.Health.Died += EnterGameOverState;

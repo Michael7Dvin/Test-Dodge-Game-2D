@@ -1,5 +1,9 @@
-﻿using _Codebase.Infrastructure.Services.HeroFactory;
+﻿using _Codebase.Infrastructure.Factories.CameraFactory;
+using _Codebase.Infrastructure.Factories.HeroFactory;
+using _Codebase.Infrastructure.Factories.ProjectileFactory;
+using _Codebase.Infrastructure.Services.ProjectilePool;
 using _Codebase.Infrastructure.StateMachine.States.Base;
+using Cysharp.Threading.Tasks;
 
 namespace _Codebase.Infrastructure.StateMachine.States
 {
@@ -7,20 +11,42 @@ namespace _Codebase.Infrastructure.StateMachine.States
     {
         private readonly IGameStateMachine _gameStateMachine;
         private readonly IHeroFactory _heroFactory;
+        private readonly ICameraFactory _cameraFactory;
+        private readonly IProjectileFactory _projectileFactory;
+        private readonly IProjectilePool _projectilePool;
 
-        public WorldSpawningState(IGameStateMachine gameStateMachine, IHeroFactory heroFactory)
+        public WorldSpawningState(IGameStateMachine gameStateMachine,
+            IHeroFactory heroFactory,
+            IProjectileFactory projectileFactory,
+            IProjectilePool projectilePool,
+            ICameraFactory cameraFactory)
         {
             _gameStateMachine = gameStateMachine;
             _heroFactory = heroFactory;
+            _projectileFactory = projectileFactory;
+            _projectilePool = projectilePool;
+            _cameraFactory = cameraFactory;
         }
 
         public async void Enter()
         {
-            _heroFactory.WarmUpAsync();
+            await WarmUpFactories();
 
-            await _heroFactory.CreateAsync();
+            _projectilePool.Initialize();
+            
+            _heroFactory.Create();
+            _cameraFactory.Create();
             
             _gameStateMachine.EnterState<GameplayState>();
+        }
+
+        private async UniTask WarmUpFactories()
+        {
+            UniTask heroFactoryWarmUp = _heroFactory.WarmUpAsync();
+            UniTask projectileFactoryWarmUp = _projectileFactory.WarmUpAsync();
+            UniTask cameraFactoryWarmUp = _cameraFactory.WarmUpAsync();
+
+            await UniTask.WhenAll(heroFactoryWarmUp, projectileFactoryWarmUp, cameraFactoryWarmUp);
         }
     }
 }
