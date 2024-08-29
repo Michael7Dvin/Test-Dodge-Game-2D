@@ -13,3 +13,5 @@ MonoBehaviour:
   m_Name: ConfigsInstaller
   m_EditorClassIdentifier: 
   _scenesAddresses: {fileID: 11400000, guid: 4bf79ad9cdc668848be474c9f491380d, type: 2}
+  _prefabAddresses: {fileID: 11400000, guid: 9152bed7658f4aa419b7cb4d5fde2c0d, type: 2}
+  _heroConfig: {fileID: 11400000, guid: 0dc0eb5ff79dd6b42a0564fb011a5bea, type: 2}
