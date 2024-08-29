@@ -1,9 +1,9 @@
-﻿using _Codebase.Common.ObservableProperty;
+﻿using UniRx;
 
 namespace _Codebase.Infrastructure.Services.InputService
 {
     public interface IInputService
     {
-        IReadOnlyObservableProperty<float> HorizontalMoveInput { get; }
+        IReadOnlyReactiveProperty<float> HorizontalMoveInput { get; }
     }
 }

@@ -1,4 +1,4 @@
-﻿using _Codebase.Common.ObservableProperty;
+﻿using UniRx;
 using UnityEngine;
 using Zenject;
 
@@ -7,9 +7,9 @@ namespace _Codebase.Infrastructure.Services.InputService
     public class InputService : IInputService, ITickable
     {
         private const string HorizontalAxisName = "Horizontal";
-        private readonly ObservableProperty<float> _horizontalMoveInput = new();
+        private readonly ReactiveProperty<float> _horizontalMoveInput = new();
         
-        public IReadOnlyObservableProperty<float> HorizontalMoveInput => _horizontalMoveInput;
+        public IReadOnlyReactiveProperty<float> HorizontalMoveInput => _horizontalMoveInput;
 
         public void Tick()
         {
