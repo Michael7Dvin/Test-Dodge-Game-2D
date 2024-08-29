@@ -26,9 +26,9 @@ namespace _Codebase.Gameplay.Heroes.Components
 
         public bool Enabled { get; set; }
 
-        public void Move(Vector2 direction)
+        public void Move(float horizontalDirection)
         {
-            if (Enabled == false || direction == Vector2.zero)
+            if (Enabled == false || horizontalDirection == 0)
             {
                 _isMoving.Value = false;
                 return;
@@ -36,7 +36,7 @@ namespace _Codebase.Gameplay.Heroes.Components
             
             _isMoving.Value = true;
 
-            
+            Vector2 direction = new Vector2(horizontalDirection, 0);
             Vector2 characterPosition = _rigidbody.position;
             Vector2 newPosition = characterPosition + direction * (_moveSpeed * Time.deltaTime);
             

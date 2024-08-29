@@ -6,6 +6,6 @@ namespace _Codebase.Infrastructure.Factories.HeroFactory
     public interface IHeroFactory
     {
         UniTask WarmUpAsync();
-        UniTask<Hero> CreateAsync();
+        Hero Create();
     }
 }

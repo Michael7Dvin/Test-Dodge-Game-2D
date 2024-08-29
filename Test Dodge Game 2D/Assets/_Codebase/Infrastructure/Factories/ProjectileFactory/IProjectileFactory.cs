@@ -7,6 +7,6 @@ namespace _Codebase.Infrastructure.Factories.ProjectileFactory
     public interface IProjectileFactory
     {
         UniTask WarmUpAsync();
-        UniTask<Projectile> CreateAsync(Vector3 position);
+        Projectile Create(Vector3 position);
     }
 }

@@ -16,6 +16,8 @@ namespace _Codebase.Infrastructure.Factories.CameraFactory
         private readonly PrefabAddresses _prefabAddresses;
         private readonly IHeroProvider _heroProvider;
         private readonly ICameraProvider _cameraProvider;
+        
+        private GameObject _cameraPrefab;
 
         public CameraFactory(IAddressablesLoader addressablesLoader,
             IInstantiator instantiator,
@@ -31,12 +33,13 @@ namespace _Codebase.Infrastructure.Factories.CameraFactory
         }
 
         public async UniTask WarmUpAsync() => 
-            await _addressablesLoader.LoadGameObjectAsync(_prefabAddresses.Camera);
+            _cameraPrefab = await _addressablesLoader.LoadGameObjectAsync(_prefabAddresses.Camera);
 
-        public async UniTask<Camera> CreateAsync()
+        public Camera Create()
         {
-            GameObject cameraPrefab = await _addressablesLoader.LoadGameObjectAsync(_prefabAddresses.Camera);
-            GameObject cameraGameObject = _instantiator.InstantiatePrefab(cameraPrefab);
+            ValidateWarmUpping().Forget();
+            
+            GameObject cameraGameObject = _instantiator.InstantiatePrefab(_cameraPrefab);
 
             Camera camera = cameraGameObject.GetComponentInChildren<Camera>();
             
@@ -49,6 +52,15 @@ namespace _Codebase.Infrastructure.Factories.CameraFactory
             _cameraProvider.SetCamera(camera);
             
             return camera;
+        }
+        
+        private async UniTaskVoid ValidateWarmUpping()
+        {
+            if (_cameraPrefab == null)
+            {
+                Debug.LogError($"{nameof(CameraFactory)} is not warmed up. Call {nameof(WarmUpAsync)} before {nameof(Create)}.");
+                await WarmUpAsync();
+            }
         }
     }
 }

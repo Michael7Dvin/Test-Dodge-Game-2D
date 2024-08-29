@@ -13,6 +13,8 @@ namespace _Codebase.Infrastructure.Factories.ProjectileFactory
         private readonly PrefabAddresses _prefabAddresses;
         private readonly IInstantiator _instantiator;
         private readonly ProjectileConfig _projectileConfig;
+        
+        private GameObject _projectilePrefab;
 
         public ProjectileFactory(IAddressablesLoader addressablesLoader,
             PrefabAddresses prefabAddresses,
@@ -26,13 +28,13 @@ namespace _Codebase.Infrastructure.Factories.ProjectileFactory
         }
 
         public async UniTask WarmUpAsync() => 
-            await _addressablesLoader.LoadGameObjectAsync(_prefabAddresses.Projectile);
+            _projectilePrefab = await _addressablesLoader.LoadGameObjectAsync(_prefabAddresses.Projectile);
 
-        public async UniTask<Projectile> CreateAsync(Vector3 position)
+        public Projectile Create(Vector3 position)
         {
-            GameObject projectilePrefab = await _addressablesLoader.LoadGameObjectAsync(_prefabAddresses.Hero);
+            ValidateWarmUpping().Forget();
             
-            Projectile projectile = _instantiator.InstantiatePrefabForComponent<Projectile>(projectilePrefab,
+            Projectile projectile = _instantiator.InstantiatePrefabForComponent<Projectile>(_projectilePrefab,
                 position,
                 Quaternion.identity,
                 null);
@@ -40,6 +42,15 @@ namespace _Codebase.Infrastructure.Factories.ProjectileFactory
             projectile.Construct(_projectileConfig.MoveSpeed);
 
             return projectile;
+        }
+
+        private async UniTaskVoid ValidateWarmUpping()
+        {
+            if (_projectilePrefab == null)
+            {
+                Debug.LogError($"{nameof(ProjectileFactory)} is not warmed up. Call {nameof(WarmUpAsync)} before {nameof(Create)}.");
+                await WarmUpAsync();
+            }
         }
     }
 }

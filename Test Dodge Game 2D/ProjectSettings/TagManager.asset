@@ -41,6 +41,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: TIles
+  - name: Background
+    uniqueID: 614856739
+    locked: 0
+  - name: Main
     uniqueID: 3983925055
     locked: 0

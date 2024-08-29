@@ -28,8 +28,8 @@ namespace _Codebase.Infrastructure.StateMachine.States
         {
             await WarmUpFactories();
 
-            await _heroFactory.CreateAsync();
-            await _cameraFactory.CreateAsync();
+            _heroFactory.Create();
+            _cameraFactory.Create();
             
             _gameStateMachine.EnterState<GameplayState>();
         }

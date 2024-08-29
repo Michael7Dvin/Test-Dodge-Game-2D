@@ -1,3 +1,4 @@
+using System;
 using _Codebase.Gameplay.Heroes.Components;
 using _Codebase.Infrastructure.Services.InputService;
 using UniRx;
@@ -41,16 +42,13 @@ namespace _Codebase.Gameplay.Heroes
             Health = GetComponent<Health>();
         }
 
+        private void FixedUpdate()
+        {
+            Mover.Move(_inputService.MoveDirection);
+        }
+
         public void Initialize()
         {
-            _inputService.HorizontalMoveInput
-                .Subscribe(horizontalMoveInput =>
-                {
-                    Vector2 moveDirection = new Vector2(horizontalMoveInput, 0);
-                    Mover.Move(moveDirection);
-                })
-                .AddTo(this);
-            
             Mover.IsMoving
                 .Subscribe(isMoving => HeroAnimator.ChangeIsMovingState(isMoving))
                 .AddTo(this);

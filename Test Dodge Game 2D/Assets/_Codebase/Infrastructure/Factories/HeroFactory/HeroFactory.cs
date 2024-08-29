@@ -17,6 +17,8 @@ namespace _Codebase.Infrastructure.Factories.HeroFactory
         private readonly HeroConfig _heroConfig;
         private readonly IHeroProvider _heroProvider;
 
+        private GameObject _heroPrefab;
+
         public HeroFactory(IAddressablesLoader addressablesLoader,
             PrefabAddresses prefabAddresses,
             IInstantiator instantiator,
@@ -31,13 +33,13 @@ namespace _Codebase.Infrastructure.Factories.HeroFactory
         }
 
         public async UniTask WarmUpAsync() => 
-            await _addressablesLoader.LoadGameObjectAsync(_prefabAddresses.Hero);
+            _heroPrefab = await _addressablesLoader.LoadGameObjectAsync(_prefabAddresses.Hero);
 
-        public async UniTask<Hero> CreateAsync()
+        public Hero Create()
         {
-            GameObject heroPrefab = await _addressablesLoader.LoadGameObjectAsync(_prefabAddresses.Hero);
+            ValidateWarmUpping().Forget();
             
-            Hero hero = _instantiator.InstantiatePrefabForComponent<Hero>(heroPrefab,
+            Hero hero = _instantiator.InstantiatePrefabForComponent<Hero>(_heroPrefab,
                 _heroConfig.SpawnPoint,
                 Quaternion.identity,
                 null);
@@ -50,6 +52,15 @@ namespace _Codebase.Infrastructure.Factories.HeroFactory
     
             _heroProvider.SetHero(hero);
             return hero;
+        }
+        
+        private async UniTaskVoid ValidateWarmUpping()
+        {
+            if (_heroPrefab == null)
+            {
+                Debug.LogError($"{nameof(HeroFactory)} is not warmed up. Call {nameof(WarmUpAsync)} before {nameof(Create)}.");
+                await WarmUpAsync();
+            }
         }
     }
 }

@@ -1,33 +1,45 @@
+using System;
 using _Codebase.Gameplay.Projectiles;
 using _Codebase.Infrastructure.Factories.ProjectileFactory;
 using _Codebase.Infrastructure.Providers.CameraProvider;
 using _Codebase.StaticData;
-using Cysharp.Threading.Tasks;
+using UniRx;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace _Codebase.Gameplay.Services.ProjectileSpawner
 {
-    public class ProjectileSpawner : IProjectileSpawner
+    public class ProjectileSpawner : IProjectileSpawner, IDisposable
     {
         private readonly IProjectileFactory _projectileFactory;
         private readonly ICameraProvider _cameraProvider; 
         private readonly ProjectileSpawnerConfig _config;
         
+        private readonly CompositeDisposable _compositeDisposable = new();
+
+        public ProjectileSpawner(IProjectileFactory projectileFactory,
+            ICameraProvider cameraProvider,
+            ProjectileSpawnerConfig config)
+        {
+            _projectileFactory = projectileFactory;
+            _cameraProvider = cameraProvider;
+            _config = config;
+        }
+
         public void Enable()
         {
-            
+            Observable.Interval(TimeSpan.FromSeconds(_config.SpawnIntervalInSeconds))
+                .Subscribe(_ => Spawn())
+                .AddTo(_compositeDisposable);
         }
 
-        public void Disable()
-        {
-            
-        }
+        public void Disable() => 
+            _compositeDisposable.Clear();
 
-        private async UniTaskVoid Spawn()
+        private void Spawn()
         {
             Vector2 spawnPosition = GetRandomPointOutsideScreen();
-            
-            Projectile projectile = await _projectileFactory.CreateAsync(spawnPosition);
+            Projectile projectile = _projectileFactory.Create(spawnPosition);
         }
 
         private Vector2 GetRandomPointOutsideScreen()
@@ -44,6 +56,11 @@ namespace _Codebase.Gameplay.Services.ProjectileSpawner
             float y = screenTopRight.y + borderMargin;
             
             return new Vector2(x, y);
+        }
+
+        public void Dispose()
+        {
+            _compositeDisposable?.Dispose();
         }
     }
 }

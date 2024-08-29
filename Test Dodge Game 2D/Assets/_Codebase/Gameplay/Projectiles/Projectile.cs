@@ -20,7 +20,7 @@ namespace _Codebase.Gameplay.Projectiles
         private void Awake() => 
             _rigidbody = GetComponent<Rigidbody2D>();
 
-        private void Update() => 
+        private void FixedUpdate() => 
             Move();
 
         private void OnTriggerEnter2D(Collider2D other)
@@ -34,7 +34,7 @@ namespace _Codebase.Gameplay.Projectiles
         private void Move()
         {
             Vector2 characterPosition = _rigidbody.position;
-            Vector2 newPosition = characterPosition + Vector2.down * (_moveSpeed * Time.deltaTime);
+            Vector2 newPosition = characterPosition + Vector2.down * (_moveSpeed * Time.fixedDeltaTime);
             _rigidbody.MovePosition(newPosition);
         }
     }

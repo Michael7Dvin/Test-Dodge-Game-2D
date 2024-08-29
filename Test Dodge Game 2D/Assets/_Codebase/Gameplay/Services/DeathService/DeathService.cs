@@ -19,7 +19,7 @@ namespace _Codebase.Gameplay.Services.DeathService
             _heroProvider = heroProvider;
         }
 
-        public void Enable()
+        public void Initialize()
         {
             _hero = _heroProvider.Hero;
             _hero.Health.Died += EnterGameOverState;
